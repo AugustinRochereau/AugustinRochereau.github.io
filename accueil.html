@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .col {
+            padding: 20px;
+        }
+
+        .col-left {
+            width: 25%;
+            background-color: #f4f4f4;
+            border-right: 2px solid #ccc;
+            overflow-y: auto;
+        }
+
+        .col-middle {
+            width: 50%;
+            background-color: #ffffff;
+            border-right: 2px solid #ccc;
+            overflow-y: auto;
+        }
+
+        .col-right {
+            width: 25%;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+
+        .action-btn {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Colonne de gauche : Liste des autres joueurs -->
+    <div class="col col-left">
+        <h2>Autres Joueurs</h2>
+        <ul id="liste-joueurs"></ul>
+    </div>
+
+    <!-- Colonne du milieu : Informations du joueur -->
+    <div class="col col-middle">
+        <h2>Votre Fiche</h2>
+        <p><strong>Nom :</strong> <span id="nom-joueur"></span></p>
+        <p><strong>Argent :</strong> <span id="argent-joueur"></span> $</p>
+        <p><strong>Biens Privés :</strong> <span id="biens-joueur"></span></p>
+        <h3>Actions</h3>
+        <a href="#" class="action-btn">Action 1</a>
+        <a href="#" class="action-btn">Action 2</a>
+        <a href="#" class="action-btn">Action 3</a>
+    </div>
+
+    <!-- Colonne de droite : Vide pour l'instant -->
+    <div class="col col-right">
+        <h2>Colonne Droite (vide)</h2>
+    </div>
+
+    <script>
+        // Simuler des données des joueurs
+        var joueurs = [
+            { nom: "Joueur 1", argent: 1500 },
+            { nom: "Joueur 2", argent: 1200 },
+            { nom: "Joueur 3", argent: 1800 },
+            { nom: "Joueur 4", argent: 1000 }
+        ];
+
+        // Informations du joueur connecté
+        var joueurPrincipal = {
+            nom: "Mon Joueur",
+            argent: 2000,
+            biens: ["Yacht", "Villa", "Voiture de sport"]
+        };
+
+        // Afficher les autres joueurs dans la colonne de gauche
+        function afficherJoueurs() {
+            var listeJoueurs = document.getElementById("liste-joueurs");
+            joueurs.forEach(function(joueur) {
+                var li = document.createElement("li");
+                li.innerHTML = joueur.nom + " - " + joueur.argent + " $";
+                listeJoueurs.appendChild(li);
+            });
+        }
+
+        // Afficher les informations du joueur principal dans la colonne du milieu
+        function afficherFicheJoueur() {
+            document.getElementById("nom-joueur").textContent = joueurPrincipal.nom;
+            document.getElementById("argent-joueur").textContent = joueurPrincipal.argent;
+            document.getElementById("biens-joueur").textContent = joueurPrincipal.biens.join(", ");
+        }
+
+        // Appeler les fonctions pour afficher les données
+        afficherJoueurs();
+        afficherFicheJoueur();
+    </script>
+</body>
+</html>
